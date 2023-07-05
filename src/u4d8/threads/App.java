@@ -1,19 +1,31 @@
-package u4d8;
+package u4d8.threads;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class App {
-	private static Logger log = LoggerFactory.getLogger(App.class);
+	public static Logger log = LoggerFactory.getLogger(App.class);
+
 	public static void main(String[] args) {
+		log.info("CIAO");
 		SimpleThread t1 = new SimpleThread(Colors.ANSI_CYAN);
 		t1.setName("THREAD 1");
 		SimpleThread t2 = new SimpleThread(Colors.ANSI_RED);
 		t2.setName("THREAD 2");
 		t1.start();
+
+
+		try {
+			t1.join();
+			t2.start();
+			t2.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// SimpleThread eredita da Thread quindi posso fare direttamente t1.start()
 //		t1.run(); // NON CHIAMARE RUN DIRETTAMENTE
-		t2.start();
 
 		SimpleRunnable r1 = new SimpleRunnable(Colors.ANSI_BLUE);
 		SimpleRunnable r2 = new SimpleRunnable(Colors.ANSI_GREEN);
