@@ -1,6 +1,10 @@
 package u4d8;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class App {
+	private static Logger log = LoggerFactory.getLogger(App.class);
 	public static void main(String[] args) {
 		SimpleThread t1 = new SimpleThread(Colors.ANSI_CYAN);
 		t1.setName("THREAD 1");
